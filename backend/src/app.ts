@@ -5,9 +5,12 @@ import db from './services/database';
 import productRoutes from './routes/products';
 import transactionRoutes from './routes/transactions';
 import cors from '@fastify/cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = fastify({ logger: true });
-
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 app.register(cors, {
   origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -20,7 +23,7 @@ app.register(fastifySwagger, {
       description: 'API documentation',
       version: '1.0.0',
     },
-    host: 'localhost:3000',
+    host: `localhost:${PORT}`,
     schemes: ['http'],
     consumes: ['application/json'],
     produces: ['application/json'],
@@ -68,8 +71,8 @@ const start = async () => {
   await checkDatabaseConnection();
 
   try {
-    await app.listen({ port: 3000 });
-    app.log.info(`Server running at http://localhost:3000`);
+    await app.listen({ port: PORT });
+    app.log.info(`Server running at http://localhost:${PORT}`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);

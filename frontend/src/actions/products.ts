@@ -2,7 +2,7 @@
 
 import { Product } from '@/types';
 
-const BASE_URL = `${process.env.BASE_URL}/api/products`;
+const BASE_URL = `${process.env.API_URL}/api/products`;
 
 async function handleResponse(response: Response) {
   if (!response.ok) {

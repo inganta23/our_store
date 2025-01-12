@@ -2,7 +2,7 @@
 
 import { AdjustmentTransaction } from '@/types';
 
-const BASE_URL = `${process.env.BASE_URL}/api/transactions`;
+const BASE_URL = `${process.env.API_URL}/api/transactions`;
 
 
 async function handleResponse(response: Response) {
