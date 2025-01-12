@@ -35,7 +35,7 @@ This project consists of two main components:
    ```bash
    npm run migrate
    ```
-   If the above command throws an error, you can check the migrations_1.sql file in the backend/src/migrations directory 
+   If the above command throws an error, you can check the migrations_1.sql file in the backend/src/migrations directory  
    and copy its contents to your PostgreSQL editor to execute manually.
 
    Start the backend:
@@ -57,7 +57,7 @@ This project consists of two main components:
    ```bash
    npm run dev
    ```
-   The application will be available at `http://localhost:5000` (default)
+   The application will be available at `http://localhost:5000` (default)  
    Hit "Import Products" button in the UI to get all the products from dummy.json
 
 ## Frontend Details
