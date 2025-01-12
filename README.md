@@ -58,6 +58,7 @@ This project consists of two main components:
    npm run dev
    ```
    The application will be available at `http://localhost:5000` (default)
+   Hit "Import Products" button in the UI to get all the products from dummy.json
 
 ## Frontend Details
 
