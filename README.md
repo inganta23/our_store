@@ -24,13 +24,20 @@ This project consists of two main components:
 2. **Set up the Backend**
    ```bash
    cd backend
-   npm install
-   ```
+   npminstall
+   ``` 
    Create a `.env` file in the backend directory:
    ```env
    DATABASE_URL=postgresql://username:password@host:port/database
    PORT=3000
    ```
+   Run database migrations:
+   ```bash
+   npm run migrate
+   ```
+   If the above command throws an error, you can check the migrations_1.sql file in the backend/src/migrations directory 
+   and copy its contents to your PostgreSQL editor to execute manually.
+
    Start the backend:
    ```bash
    npm run dev
