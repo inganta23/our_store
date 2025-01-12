@@ -38,6 +38,9 @@ export function AdjustmentTransactions() {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingAdd, setIsLoadingAdd] = useState(false);
+  const [isLoadingEdit, setIsLoadingEdit] = useState(false);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const closeDeleteDialog = async () => {
     setIsDeleteDialogOpen(false);
@@ -65,6 +68,8 @@ export function AdjustmentTransactions() {
   };
 
   const handleAddTransaction = async () => {
+    if (isLoadingAdd) return;
+    setIsLoadingAdd(true);
     try {
       const response = await createTransaction(newTransaction);
 
@@ -81,9 +86,13 @@ export function AdjustmentTransactions() {
         variant: 'destructive',
       });
     }
+    setIsLoadingAdd(false);
   };
 
   const handleDeleteTransaction = async () => {
+    if (isLoadingDelete) return;
+    setIsLoadingDelete(true);
+
     if (!transactionToDelete?.id) return null;
 
     try {
@@ -102,9 +111,13 @@ export function AdjustmentTransactions() {
         variant: 'destructive',
       });
     }
+    setIsLoadingDelete(false);
   };
 
   const handleEditTransaction = async () => {
+    if (isLoadingEdit) return;
+    setIsLoadingEdit(true);
+
     if (!editingTransaction) return;
 
     try {
@@ -123,6 +136,7 @@ export function AdjustmentTransactions() {
         variant: 'destructive',
       });
     }
+    setIsLoadingEdit(false);
   };
 
   const handleSearch = async (query: string) => {
@@ -195,7 +209,7 @@ export function AdjustmentTransactions() {
               onClick={handleAddTransaction}
               className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700"
             >
-              Add Adjustment
+              {isLoadingAdd ? <Spinner /> : 'Add Adjustment'}
             </Button>
           </div>
         </div>
@@ -243,7 +257,10 @@ export function AdjustmentTransactions() {
               </div>
 
               <div className="mt-2 flex space-x-2">
-                <Button onClick={handleEditTransaction}>Save Changes</Button>
+                <Button onClick={handleEditTransaction}>
+                  {' '}
+                  {isLoadingEdit ? <Spinner /> : 'Save changes'}
+                </Button>
                 <Button
                   onClick={() => setEditingTransaction(null)}
                   variant="secondary"
@@ -316,7 +333,7 @@ export function AdjustmentTransactions() {
                         className="w-full sm:w-auto"
                         variant="destructive"
                       >
-                        Delete
+                        {isLoadingAdd ? <Spinner /> : 'Delete'}
                       </Button>
                     </div>
                   </TableCell>
